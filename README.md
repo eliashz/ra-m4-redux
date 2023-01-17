@@ -5,7 +5,7 @@
 - `npm i`
 - `npm run dev`
 
-### ~~CodeSandBox~~
+### [CodeSandBox](https://codesandbox.io/p/github/eliashz/ra-m4-tarea-redux/draft/youthful-wiles)
 
 ### Documentación
 
