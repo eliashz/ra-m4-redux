@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { main } from '../../constants'
 
@@ -17,12 +17,18 @@ const MainMenuStyled = styled.ul`
   }
 `
 
-function MainMenu() {
+function MainMenu({ bold, setBold }) {
   return (
     <MainMenuStyled>
       {Object.values(main).map(({ path, label }) => (
         <li key={path}>
-          <a href={path}>{label}</a>
+          <a
+            href={path}
+            onClick={(e) => setBold(e.target.textContent)}
+            style={{ fontWeight: label === bold ? 'bold' : 'normal' }}
+          >
+            {label}
+          </a>
         </li>
       ))}
     </MainMenuStyled>
