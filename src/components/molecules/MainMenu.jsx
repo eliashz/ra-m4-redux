@@ -7,6 +7,7 @@ const MainMenuStyled = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 
   li {
     margin-left: 1rem;
@@ -17,14 +18,21 @@ const MainMenuStyled = styled.ul`
   }
 `
 
-function MainMenu({ bold, setBold }) {
+function MainMenu() {
+  const [bold, setBold] = useState('')
+
+  const handleClick = (e) => {
+    setBold(e.target.textContent)
+    //e.preventDefault()
+  }
+
   return (
     <MainMenuStyled>
       {Object.values(main).map(({ path, label }) => (
         <li key={path}>
           <a
             href={path}
-            onClick={(e) => setBold(e.target.textContent)}
+            onClick={handleClick}
             style={{ fontWeight: label === bold ? 'bold' : 'normal' }}
           >
             {label}
