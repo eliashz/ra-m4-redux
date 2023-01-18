@@ -7,7 +7,6 @@ const MainMenuStyled = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  text-decoration: none;
 
   li {
     margin-left: 1rem;
@@ -31,8 +30,8 @@ function MainMenu() {
       {Object.values(main).map(({ path, label }) => (
         <li key={path}>
           <a
-            href={path}
             onClick={handleClick}
+            href={path}
             style={{ fontWeight: label === bold ? 'bold' : 'normal' }}
           >
             {label}
