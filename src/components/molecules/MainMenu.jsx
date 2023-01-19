@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { main } from '../../constants'
 
@@ -18,21 +19,17 @@ const MainMenuStyled = styled.ul`
 `
 
 function MainMenu() {
-  const [bold, setBold] = useState('')
-
-  const handleClick = (e) => {
-    setBold(e.target.textContent)
-    //e.preventDefault()
-  }
+  const location = useLocation()
 
   return (
     <MainMenuStyled>
       {Object.values(main).map(({ path, label }) => (
         <li key={path}>
           <a
-            onClick={handleClick}
             href={path}
-            style={{ fontWeight: label === bold ? 'bold' : 'normal' }}
+            style={{
+              fontWeight: path === location.pathname ? 'bold' : 'normal',
+            }}
           >
             {label}
           </a>
