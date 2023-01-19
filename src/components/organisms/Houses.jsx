@@ -17,6 +17,10 @@ function Houses() {
     if (!data) return
     setHouses(data)
   }, [data])
+  /* let types = [...new Set(houses.map((house) => house.type))]
+  let cities = [...new Set(houses.map((house) => house.city))]
+
+  console.log(cities) */
 
   return (
     <HousesStyled>
@@ -24,7 +28,7 @@ function Houses() {
       {isError && <div>Error</div>}
       {isSuccess && (
         <Grid gridGap="32px">
-          {houses.map((house) => (
+          {houses.slice(0, 9 * currentPage).map((house) => (
             <HouseCard
               key={house.id}
               title={house.title}
@@ -37,7 +41,10 @@ function Houses() {
       )}
       <FlexBox align="center">
         <Button
-          style={{ marginTop: '2rem' }}
+          style={{
+            marginTop: '2rem',
+            display: currentPage * 9 >= houses.length ? 'none' : 'block',
+          }}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           Load more
