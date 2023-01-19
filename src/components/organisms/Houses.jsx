@@ -9,6 +9,7 @@ import { urls } from '../../constants'
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
+  const HOUSES_SHOWED = 9
   const [houses, setHouses] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const { data, loading, isError, isSuccess } = useFetch(urls.houses)
@@ -28,7 +29,7 @@ function Houses() {
       {isError && <div>Error</div>}
       {isSuccess && (
         <Grid gridGap="32px">
-          {houses.slice(0, 9 * currentPage).map((house) => (
+          {houses.slice(0, HOUSES_SHOWED * currentPage).map((house) => (
             <HouseCard
               key={house.id}
               title={house.title}
@@ -43,7 +44,8 @@ function Houses() {
         <Button
           style={{
             marginTop: '2rem',
-            display: currentPage * 9 >= houses.length ? 'none' : 'block',
+            display:
+              currentPage * HOUSES_SHOWED >= houses.length ? 'none' : 'block',
           }}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
