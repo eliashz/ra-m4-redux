@@ -8,7 +8,7 @@ const getHouses = createAsyncThunk('houses/getHouses', async () => {
 })
 
 const initialState = {
-  reqStatus: 'loading',
+  reqStatus: 'initial',
   houses: [],
 }
 
@@ -17,14 +17,15 @@ const housesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getHouses.pending, (state, action) => {
-      state.entities.push(action.payload)
+    builder.addCase(getHouses.pending, (state) => {
+      state.reqStatus = 'loading'
     })
     builder.addCase(getHouses.fulfilled, (state, action) => {
-      state.entities.push(action.payload)
+      state.reqStatus = 'success'
+      state.houses.push(...action.payload)
     })
-    builder.addCase(getHouses.rejected, (state, action) => {
-      state.entities.push(action.payload)
+    builder.addCase(getHouses.rejected, (state) => {
+      state.reqStatus = 'failed'
     })
   },
 })
