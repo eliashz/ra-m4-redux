@@ -9,7 +9,12 @@ export const getHouses = createAsyncThunk('houses/getHouses', async () => {
 
 const initialState = {
   reqStatus: 'initial',
-  houses: [],
+  houses: {
+    byId: {},
+    allIds: [],
+    byCity: [],
+    byType: [],
+  },
 }
 
 const housesSlice = createSlice({
@@ -22,7 +27,18 @@ const housesSlice = createSlice({
     })
     builder.addCase(getHouses.fulfilled, (state, action) => {
       state.reqStatus = 'success'
-      state.houses.push(...action.payload)
+      action.payload.forEach((house) => {
+        state.houses.byId[house.id] = house
+        if (!state.houses.allIds.includes(house.id)) {
+          state.houses.allIds.push(house.id)
+        }
+        if (!state.houses.byCity.includes(house.city)) {
+          state.houses.byCity.push(house.city)
+        }
+        if (!state.houses.byType.includes(house.type)) {
+          state.houses.byType.push(house.type)
+        }
+      })
     })
     builder.addCase(getHouses.rejected, (state) => {
       state.reqStatus = 'failed'
