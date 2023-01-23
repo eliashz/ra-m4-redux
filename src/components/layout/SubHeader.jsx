@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { handleChange } from '../../helpers'
 import { colors, Container, dimensions, FlexBox } from '../../styles'
 import { Button, Icon } from '../atoms'
 import { SelectGroup } from '../molecules'
@@ -28,12 +29,10 @@ const FormStyled = styled(FlexBox).attrs({ as: 'form' })`
 `
 
 function SubHeader({ ...props }) {
+  const [city, setCity] = useState('')
+  const [type, setType] = useState('')
   const houses = useSelector((state) => state.houses.houses)
   const { byCity, byType } = houses
-
-  const handleChange = (e) => {
-    console.log(e.target.value)
-  }
 
   return (
     <SubHeaderStyled {...props}>
@@ -45,7 +44,7 @@ function SubHeader({ ...props }) {
             defaultText="Piso, chalet o garaje..."
             hideLabel
             options={byType}
-            onChange={handleChange}
+            onChange={(e) => handleChange(e, setType)}
           />
 
           <SelectGroup
@@ -54,7 +53,7 @@ function SubHeader({ ...props }) {
             defaultText="Madrid, Barcelona o Zaragoza..."
             hideLabel
             options={byCity}
-            onChange={handleChange}
+            onChange={(e) => handleChange(e, setCity)}
           />
 
           <Button>
