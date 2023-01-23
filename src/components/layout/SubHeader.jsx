@@ -30,6 +30,11 @@ const FormStyled = styled(FlexBox).attrs({ as: 'form' })`
 function SubHeader({ ...props }) {
   const houses = useSelector((state) => state.houses.houses)
   const { byCity, byType } = houses
+
+  const handleChange = (e) => {
+    console.log(e.target.value)
+  }
+
   return (
     <SubHeaderStyled {...props}>
       <Container>
@@ -40,6 +45,7 @@ function SubHeader({ ...props }) {
             defaultText="Piso, chalet o garaje..."
             hideLabel
             options={byType}
+            onChange={handleChange}
           />
 
           <SelectGroup
@@ -48,6 +54,7 @@ function SubHeader({ ...props }) {
             defaultText="Madrid, Barcelona o Zaragoza..."
             hideLabel
             options={byCity}
+            onChange={handleChange}
           />
 
           <Button>
