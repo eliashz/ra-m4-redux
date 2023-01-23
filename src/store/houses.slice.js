@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { urls } from '../constants'
 
-const getHouses = createAsyncThunk('houses/getHouses', async () => {
+export const getHouses = createAsyncThunk('houses/getHouses', async () => {
   const res = await fetch(urls.houses)
   const data = await res.json()
   return data
@@ -30,5 +30,4 @@ const housesSlice = createSlice({
   },
 })
 
-export const {} = housesSlice.actions
 export default housesSlice.reducer

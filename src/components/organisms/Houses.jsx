@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '../atoms'
 import { HouseCard } from '../molecules'
 import { useFetch } from '../../hooks'
 import { FlexBox, Grid } from '../../styles'
 import { urls } from '../../constants'
+import { getHouses } from '../../store/houses.slice'
 
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
   const HOUSES_SHOWED = 9
-  const [houses, setHouses] = useState([])
+  const houses = useSelector((state) => state.houses.houses)
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, loading, isError, isSuccess } = useFetch(urls.houses)
+  //const { data, loading, isError, isSuccess } = useFetch(urls.houses)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!data) return
-    setHouses(data)
-  }, [data])
+    dispatch(getHouses())
+  }, [dispatch])
   /* let types = [...new Set(houses.map((house) => house.type))]
   let cities = [...new Set(houses.map((house) => house.city))]
 
@@ -25,10 +28,10 @@ function Houses() {
 
   return (
     <HousesStyled>
-      {loading && <div>Loading...</div>}
-      {isError && <div>Error</div>}
-      {isSuccess && (
-        <Grid gridGap="32px">
+      {/*    {loading && <div>Loading...</div>}
+      {isError && <div>Error</div>} */}
+      {
+        /* isSuccess &&  */ <Grid gridGap="32px">
           {houses.slice(0, HOUSES_SHOWED * currentPage).map((house) => (
             <HouseCard
               key={house.id}
@@ -39,7 +42,7 @@ function Houses() {
             />
           ))}
         </Grid>
-      )}
+      }
       <FlexBox align="center">
         <Button
           style={{
