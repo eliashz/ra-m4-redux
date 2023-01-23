@@ -30,8 +30,8 @@ function SelectGroup({
           {defaultText}
         </SelectOption>
         {options.map((option) => (
-          <SelectOption value={option.value} key={option.value}>
-            {option.text}
+          <SelectOption value={option} key={option}>
+            {option.charAt(0).toUpperCase() + option.slice(1)}
           </SelectOption>
         ))}
       </Select>
@@ -43,12 +43,7 @@ SelectGroup.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    }),
-  ),
+  options: PropTypes.arrayOf(PropTypes.string),
   defaultValue: PropTypes.string,
   defaultText: PropTypes.string,
   hideLabel: PropTypes.bool,

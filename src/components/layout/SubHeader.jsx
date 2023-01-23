@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { colors, Container, dimensions, FlexBox } from '../../styles'
 import { Button, Icon } from '../atoms'
@@ -27,6 +28,8 @@ const FormStyled = styled(FlexBox).attrs({ as: 'form' })`
 `
 
 function SubHeader({ ...props }) {
+  const houses = useSelector((state) => state.houses.houses)
+  const { byCity, byType } = houses
   return (
     <SubHeaderStyled {...props}>
       <Container>
@@ -36,11 +39,7 @@ function SubHeader({ ...props }) {
             label="Tipo"
             defaultText="Piso, chalet o garaje..."
             hideLabel
-            options={[
-              { value: 'piso', text: 'Piso' },
-              { value: 'garaje', text: 'Garaje' },
-              { value: 'chalets', text: 'Chalets' },
-            ]}
+            options={byType}
           />
 
           <SelectGroup
@@ -48,11 +47,7 @@ function SubHeader({ ...props }) {
             label="Ciudad"
             defaultText="Madrid, Barcelona o Zaragoza..."
             hideLabel
-            options={[
-              { value: 'barcelona', text: 'Barcelona' },
-              { value: 'madrid', text: 'Madrid' },
-              { value: 'zaragoza', text: 'Zaragoza' },
-            ]}
+            options={byCity}
           />
 
           <Button>
