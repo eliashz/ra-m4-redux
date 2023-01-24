@@ -5,6 +5,7 @@ const initialState = {
   type: '',
 }
 
+// Este slice no es necesario, pasar setCity y setType a houses.slice
 export const selectSlice = createSlice({
   name: 'select',
   initialState,

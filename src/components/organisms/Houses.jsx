@@ -11,9 +11,9 @@ import { increment } from '../../store/loadMore.slice'
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
-  const HOUSES_SHOWED = 9
+  const HOUSES_SHOWED = 9 // Guardar en constants
   const select = useSelector((state) => state.select)
-  const currentPage = useSelector((state) => state.loadMore.value)
+  const currentPage = useSelector((state) => state.loadMore.value) // Esto podrías guardarlo en la vista y pasarselo como parametro a getHouses()
   const houses = useSelector((state) => state.houses.houses)
   const { byId } = houses
 
