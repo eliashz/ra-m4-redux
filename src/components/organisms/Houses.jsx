@@ -5,7 +5,7 @@ import { Button } from '../atoms'
 import { HouseCard } from '../molecules'
 import { FlexBox, Grid } from '../../styles'
 import { getHouses } from '../../store/houses.slice'
-import { filterSelect } from '../../helpers'
+import { filterHouses } from '../../helpers'
 import { increment } from '../../store/loadMore.slice'
 
 const HousesStyled = styled(FlexBox)``
@@ -27,7 +27,7 @@ function Houses() {
     <HousesStyled>
       <Grid gridGap="32px">
         {Object.values(byId)
-          .filter((house) => filterSelect(select, house))
+          .filter((house) => filterHouses(select, house, ))
           .slice(0, HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard
