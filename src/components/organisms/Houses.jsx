@@ -8,13 +8,25 @@ import { getHouses } from '../../store/houses.slice'
 
 const HousesStyled = styled(FlexBox)``
 
-const byCity = (byId) => {}
+function byCity(select, house) {
+  if (select.city === house.city) return true
+  return false
+}
+function byType(select, house) {
+  if (select.type === house.type) return true
+  return false
+}
+
+function filterSelect(select, house) {
+  return byCity(select, house) && byType(select, house)
+}
 
 function Houses() {
   const HOUSES_SHOWED = 9
   const [currentPage, setCurrentPage] = useState(1)
   const houses = useSelector((state) => state.houses.houses)
   const { byId } = houses
+  const select = useSelector((state) => state.select)
 
   const dispatch = useDispatch()
 
@@ -26,7 +38,7 @@ function Houses() {
     <HousesStyled>
       <Grid gridGap="32px">
         {Object.values(byId)
-          /* .filter */
+          .filter((house) => filterSelect(select, house))
           .slice(0, HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard
