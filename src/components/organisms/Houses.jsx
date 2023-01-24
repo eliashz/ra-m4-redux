@@ -7,11 +7,11 @@ import { FlexBox, Grid } from '../../styles'
 import { getHouses } from '../../store/houses.slice'
 import { filterHouses } from '../../helpers'
 import { increment } from '../../store/loadMore.slice'
+import { constants } from '../../constants'
 
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
-  const HOUSES_SHOWED = 9
   const select = useSelector((state) => state.select)
   const currentPage = useSelector((state) => state.loadMore.value)
   const houses = useSelector((state) => state.houses.houses)
@@ -28,7 +28,7 @@ function Houses() {
       <Grid gridGap="32px">
         {Object.values(byId)
           .filter((house) => filterHouses(select, house.city, house.type))
-          .slice(0, HOUSES_SHOWED * currentPage)
+          .slice(0, constants.HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard
               key={house.id}
@@ -44,7 +44,8 @@ function Houses() {
           style={{
             marginTop: '2rem',
             display:
-              currentPage * HOUSES_SHOWED >= Object.values(byId).length
+              currentPage * constants.HOUSES_SHOWED >=
+              Object.values(byId).length
                 ? 'none'
                 : 'block',
           }}
