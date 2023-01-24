@@ -6,15 +6,17 @@ import { HouseCard } from '../molecules'
 import { FlexBox, Grid } from '../../styles'
 import { getHouses } from '../../store/houses.slice'
 import { filterSelect } from '../../helpers'
+import { increment } from '../../store/loadMore.slice'
 
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
   const HOUSES_SHOWED = 9
-  const [currentPage, setCurrentPage] = useState(1)
+  const select = useSelector((state) => state.select)
+  const currentPage = useSelector((state) => state.loadMore.value)
   const houses = useSelector((state) => state.houses.houses)
   const { byId } = houses
-  const select = useSelector((state) => state.select)
+  console.log('currentPage', currentPage)
 
   const dispatch = useDispatch()
 
@@ -47,7 +49,7 @@ function Houses() {
                 ? 'none'
                 : 'block',
           }}
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() => dispatch(increment())}
         >
           Load more
         </Button>
