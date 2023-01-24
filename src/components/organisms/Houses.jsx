@@ -15,6 +15,7 @@ function Houses() {
   const select = useSelector((state) => state.select)
   const currentPage = useSelector((state) => state.loadMore.value)
   const houses = useSelector((state) => state.houses.houses)
+  const status = useSelector((state) => state.houses)
   const { byId } = houses
 
   const dispatch = useDispatch()
@@ -25,7 +26,8 @@ function Houses() {
 
   return (
     <HousesStyled>
-      {houses.isError}
+      {status.isError && <div>Error</div>}
+      {status.isLoading && <div>Loading...</div>}
       <Grid gridGap="32px">
         {Object.values(byId)
           .filter((house) => filterHouses(select, house.city, house.type))
