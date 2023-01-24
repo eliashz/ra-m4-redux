@@ -17,7 +17,7 @@ function Houses() {
   const houses = useSelector((state) => state.houses.houses)
   const status = useSelector((state) => state.houses)
   const { byId } = houses
-
+  console.log(houses.filter.type)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -30,7 +30,13 @@ function Houses() {
       {status.isLoading && <div>Loading...</div>}
       <Grid gridGap="32px">
         {Object.values(byId)
-          .filter((house) => filterHouses(select, house.city, house.type))
+          .filter((house) =>
+            filterHouses(
+              { select: 'narce' },
+              house.filter.city,
+              house.filter.type,
+            ),
+          )
           .slice(0, constants.HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard

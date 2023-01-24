@@ -23,13 +23,24 @@ const initialState = {
     allIds: [],
     byCity: [],
     byType: [],
+    filter: {
+      city: 'x',
+      type: 'z',
+    },
   },
 }
 
 const housesSlice = createSlice({
   name: 'houses',
   initialState,
-  reducers: {},
+  reducers: {
+    setCity: (state, action) => {
+      state.houses.filter.city = action.payload
+    },
+    setType: (state, action) => {
+      state.houses.filter.type = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getHouses.pending, (state) => {
@@ -64,5 +75,5 @@ const housesSlice = createSlice({
       })
   },
 })
-
+export const { setCity, setType } = housesSlice.actions
 export default housesSlice.reducer
