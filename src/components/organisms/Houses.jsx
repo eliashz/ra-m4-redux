@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '../atoms'
@@ -16,7 +16,6 @@ function Houses() {
   const currentPage = useSelector((state) => state.loadMore.value)
   const houses = useSelector((state) => state.houses.houses)
   const { byId } = houses
-  console.log('currentPage', currentPage)
 
   const dispatch = useDispatch()
 
