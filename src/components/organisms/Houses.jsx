@@ -9,11 +9,11 @@ import { getHouses } from '../../store/houses.slice'
 const HousesStyled = styled(FlexBox)``
 
 function byCity(select, house) {
-  if (select.city === house.city) return true
+  if (select.city === house.city || !select.city) return true
   return false
 }
 function byType(select, house) {
-  if (select.type === house.type) return true
+  if (select.type === house.type || !select.type) return true
   return false
 }
 
