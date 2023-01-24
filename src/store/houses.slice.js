@@ -15,6 +15,9 @@ export const getHouses = createAsyncThunk(
 
 const initialState = {
   reqStatus: 'initial',
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
   houses: {
     byId: {},
     allIds: [],
@@ -31,9 +34,15 @@ const housesSlice = createSlice({
     builder
       .addCase(getHouses.pending, (state) => {
         state.reqStatus = 'loading'
+        state.isLoading = true
+        state.isSuccess = false
+        state.isError = false
       })
       .addCase(getHouses.fulfilled, (state, action) => {
         state.reqStatus = 'success'
+        state.isSuccess = true
+        state.isLoading = false
+        state.isError = false
         action.payload.forEach((house) => {
           state.houses.byId[house.id] = house
           if (!state.houses.allIds.includes(house.id)) {
@@ -49,6 +58,9 @@ const housesSlice = createSlice({
       })
       .addCase(getHouses.rejected, (state) => {
         state.reqStatus = 'failed'
+        state.isError = true
+        state.isLoading = false
+        state.isSuccess = false
       })
   },
 })

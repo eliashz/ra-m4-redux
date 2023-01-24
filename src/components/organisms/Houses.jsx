@@ -25,6 +25,7 @@ function Houses() {
 
   return (
     <HousesStyled>
+      {houses.isError}
       <Grid gridGap="32px">
         {Object.values(byId)
           .filter((house) => filterHouses(select, house.city, house.type))
