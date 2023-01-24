@@ -38,7 +38,6 @@ function Houses() {
             />
           ))}
       </Grid>
-
       <FlexBox align="center">
         <Button
           style={{
