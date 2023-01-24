@@ -5,21 +5,9 @@ import { Button } from '../atoms'
 import { HouseCard } from '../molecules'
 import { FlexBox, Grid } from '../../styles'
 import { getHouses } from '../../store/houses.slice'
+import { filterSelect } from '../../helpers'
 
 const HousesStyled = styled(FlexBox)``
-
-function byCity(select, house) {
-  if (select.city === house.city || !select.city) return true
-  return false
-}
-function byType(select, house) {
-  if (select.type === house.type || !select.type) return true
-  return false
-}
-
-function filterSelect(select, house) {
-  return byCity(select, house) && byType(select, house)
-}
 
 function Houses() {
   const HOUSES_SHOWED = 9
