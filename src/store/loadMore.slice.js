@@ -4,6 +4,7 @@ const initialState = {
   value: 1,
 }
 
+// Este slice no es necesario, puedes pasarselo como parametros al thunk
 export const loadMoreSlice = createSlice({
   name: 'loadMore',
   initialState,

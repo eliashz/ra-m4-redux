@@ -14,7 +14,7 @@ export const getHouses = createAsyncThunk(
 )
 
 const initialState = {
-  reqStatus: 'initial',
+  reqStatus: 'initial', // Añadir isLoading, isSuccess, isError para que sea más fácil de usar en la vista
   houses: {
     byId: {},
     allIds: [],
