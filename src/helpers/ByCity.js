@@ -1,5 +1,5 @@
-function byCity(select, house) {
-  if (select.city === house.city || !select.city) return true
+function byCity(select, city) {
+  if (select.city === city || !select.city) return true
   return false
 }
 

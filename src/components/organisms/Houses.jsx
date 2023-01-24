@@ -27,7 +27,7 @@ function Houses() {
     <HousesStyled>
       <Grid gridGap="32px">
         {Object.values(byId)
-          .filter((house) => filterHouses(select, house, ))
+          .filter((house) => filterHouses(select, house.city, house.type))
           .slice(0, HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard
