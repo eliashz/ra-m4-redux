@@ -8,6 +8,8 @@ import { getHouses } from '../../store/houses.slice'
 
 const HousesStyled = styled(FlexBox)``
 
+const byCity = (byId) => {}
+
 function Houses() {
   const HOUSES_SHOWED = 9
   const [currentPage, setCurrentPage] = useState(1)
@@ -24,6 +26,7 @@ function Houses() {
     <HousesStyled>
       <Grid gridGap="32px">
         {Object.values(byId)
+          /* .filter */
           .slice(0, HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard
