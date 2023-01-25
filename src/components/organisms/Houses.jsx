@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '../atoms'
@@ -6,13 +6,12 @@ import { HouseCard } from '../molecules'
 import { FlexBox, Grid } from '../../styles'
 import { getHouses } from '../../store/houses.slice'
 import { filterHouses } from '../../helpers'
-import { increment } from '../../store/loadMore.slice'
 import { constants } from '../../constants'
 
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
-  const currentPage = useSelector((state) => state.loadMore.value)
+  const [currentPage, setCurrentPage] = useState(1)
   const houses = useSelector((state) => state.houses.houses)
   const status = useSelector((state) => state.houses)
   const { byId, filter } = houses
@@ -52,7 +51,7 @@ function Houses() {
                 ? 'none'
                 : 'block',
           }}
-          onClick={() => dispatch(increment())}
+          onClick={() => setCurrentPage(currentPage + 1)}
         >
           Load more
         </Button>
