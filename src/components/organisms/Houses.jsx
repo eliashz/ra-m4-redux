@@ -29,7 +29,7 @@ function Houses() {
     <HousesStyled>
       {status.isError && <div>Error</div>}
       {status.isLoading && <div>Loading...</div>}
-      {filteredHouses.length === 0 && <div>No results</div>}
+      {status.isSuccess && filteredHouses.length === 0 && <div>No hay resultados</div>}
       <Grid gridGap="32px">
         {filteredHouses
           .slice(0, constants.HOUSES_SHOWED * currentPage)
