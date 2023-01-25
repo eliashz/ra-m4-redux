@@ -21,7 +21,8 @@ const router = createBrowserRouter([
     path: paths.profile,
   },
 ])
-console.log(store.getState())
+//console.log(store.getState())
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
