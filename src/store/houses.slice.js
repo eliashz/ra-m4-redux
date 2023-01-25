@@ -24,8 +24,8 @@ const initialState = {
     byCity: [],
     byType: [],
     filter: {
-      city: 'x',
-      type: 'z',
+      city: '',
+      type: '',
     },
   },
 }

@@ -1,6 +1,5 @@
-function byCity(select, city) {
-  console.log('cityy', city)
-  if (select.city === city || !select.city) return true
+function byCity(selectedCity, city) {
+  if (selectedCity === city || !selectedCity) return true
   return false
 }
 

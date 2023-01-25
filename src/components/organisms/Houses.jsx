@@ -12,12 +12,10 @@ import { constants } from '../../constants'
 const HousesStyled = styled(FlexBox)``
 
 function Houses() {
-  const select = useSelector((state) => state.select)
   const currentPage = useSelector((state) => state.loadMore.value)
   const houses = useSelector((state) => state.houses.houses)
   const status = useSelector((state) => state.houses)
-  const { byId } = houses
-  console.log(houses.filter.type)
+  const { byId, filter } = houses
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,11 +29,7 @@ function Houses() {
       <Grid gridGap="32px">
         {Object.values(byId)
           .filter((house) =>
-            filterHouses(
-              { select: 'narce' },
-              house.filter.city,
-              house.filter.type,
-            ),
+            filterHouses(filter.city, filter.type, house.city, house.type),
           )
           .slice(0, constants.HOUSES_SHOWED * currentPage)
           .map((house) => (

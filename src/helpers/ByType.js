@@ -1,5 +1,5 @@
-function byType(select, type) {
-  if (select.type === type || !select.type) return true
+function byType(selectedType, type) {
+  if (selectedType === type || !selectedType) return true
   return false
 }
 

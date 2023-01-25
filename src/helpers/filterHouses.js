@@ -1,8 +1,8 @@
 import byCity from './ByCity'
 import byType from './ByType'
 
-function filterHouses(select, city, type) {
-  return byCity(select, city) && byType(select, type)
+function filterHouses(selectedCity, selectedType, city, type) {
+  return byCity(selectedCity, city) && byType(selectedType, type)
 }
 
 export default filterHouses
