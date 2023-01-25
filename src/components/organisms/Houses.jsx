@@ -21,15 +21,17 @@ function Houses() {
     dispatch(getHouses())
   }, [dispatch])
 
+  const filteredHouses = Object.values(byId).filter((house) =>
+    filterHouses(filter.city, filter.type, house.city, house.type),
+  )
+
   return (
     <HousesStyled>
       {status.isError && <div>Error</div>}
       {status.isLoading && <div>Loading...</div>}
+      {filteredHouses.length === 0 && <div>No results</div>}
       <Grid gridGap="32px">
-        {Object.values(byId)
-          .filter((house) =>
-            filterHouses(filter.city, filter.type, house.city, house.type),
-          )
+        {filteredHouses
           .slice(0, constants.HOUSES_SHOWED * currentPage)
           .map((house) => (
             <HouseCard
@@ -46,8 +48,7 @@ function Houses() {
           style={{
             marginTop: '2rem',
             display:
-              currentPage * constants.HOUSES_SHOWED >=
-              Object.values(byId).length
+              currentPage * constants.HOUSES_SHOWED >= filteredHouses.length
                 ? 'none'
                 : 'block',
           }}
