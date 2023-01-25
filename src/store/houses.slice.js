@@ -28,6 +28,7 @@ const initialState = {
       type: '',
     },
   },
+  currentPage: 1,
 }
 
 const housesSlice = createSlice({
@@ -39,6 +40,9 @@ const housesSlice = createSlice({
     },
     setType: (state, action) => {
       state.houses.filter.type = action.payload
+    },
+    setCurrentPage: (state) => {
+      state.currentPage += 1
     },
   },
   extraReducers: (builder) => {
@@ -75,5 +79,5 @@ const housesSlice = createSlice({
       })
   },
 })
-export const { setCity, setType } = housesSlice.actions
+export const { setCity, setType, setCurrentPage } = housesSlice.actions
 export default housesSlice.reducer
