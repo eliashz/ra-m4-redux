@@ -2,8 +2,9 @@
 
 ### Instrucciones
 
-- `npm i`
-- `npm run dev`
+1. `npm i`
+2. `npm run dev`
+3. `npm run serve`
 
 ### [CodeSandBox](https://codesandbox.io/p/github/eliashz/ra-m4-tarea-redux/draft/youthful-wiles)
 

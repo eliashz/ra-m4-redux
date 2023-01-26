@@ -16,10 +16,10 @@ function Houses() {
   const { currentPage } = status
   const { byId, filter } = houses
   const dispatch = useDispatch()
-
+  console.log(byId)
   useEffect(() => {
-    dispatch(getHouses())
-  }, [dispatch])
+    dispatch(getHouses(currentPage))
+  }, [currentPage, dispatch])
 
   const filteredHouses = Object.values(byId).filter((house) =>
     filterHouses(filter.city, filter.type, house.city, house.type),
@@ -29,19 +29,19 @@ function Houses() {
     <HousesStyled>
       {status.isError && <div>Error</div>}
       {status.isLoading && <div>Loading...</div>}
-      {status.isSuccess && filteredHouses.length === 0 && <div>No hay resultados</div>}
+      {status.isSuccess && filteredHouses.length === 0 && (
+        <div>No hay resultados</div>
+      )}
       <Grid gridGap="32px">
-        {filteredHouses
-          .slice(0, constants.HOUSES_SHOWED * currentPage)
-          .map((house) => (
-            <HouseCard
-              key={house.id}
-              title={house.title}
-              price={`${house.price}€`}
-              img={house.image}
-              link=""
-            />
-          ))}
+        {filteredHouses.map((house) => (
+          <HouseCard
+            key={house.id}
+            title={house.title}
+            price={`${house.price}€`}
+            img={house.image}
+            link=""
+          />
+        ))}
       </Grid>
       <FlexBox align="center">
         <Button

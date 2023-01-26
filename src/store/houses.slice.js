@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { urls } from '../constants'
+import { urls, constants } from '../constants'
+
+const getUrl = (page) =>
+  `${urls.houses}?_page=${page}&_limit=${constants.HOUSES_SHOWED}`
 
 export const getHouses = createAsyncThunk(
   'houses/getHouses',
-  async (name, { rejectWithValue }) => {
-    const res = await fetch(urls.houses)
+  async (currentPage, { rejectWithValue }) => {
+    const res = await fetch(getUrl(currentPage))
     const data = await res.json()
     if (res.status < 200 || res.status >= 300) {
       return rejectWithValue(data)
@@ -24,8 +27,8 @@ const initialState = {
     byCity: [],
     byType: [],
     filter: {
-      city: '',
-      type: '',
+      city: null,
+      type: null,
     },
   },
   currentPage: 1,
